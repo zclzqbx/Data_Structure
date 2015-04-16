@@ -36,3 +36,19 @@ AbstractList<T> & LinearList<T>::Delete(int k,T& x)
 	}
 	else throw OutOfBounds();
 }
+template<class T>
+AbstractList<T> & LinearList<T>::insert(int k,T& x)//在第k个元素之前插入数据
+{
+	if(k<1 || k>length+1)
+		throw OutOfBounds();
+	if(length==MaxSize)
+		throw NoMem();
+
+	for(int i=length-1;i>=k-1;--i)
+	{
+		elem[i+1]=elem[i];
+	}
+	elem[k-1]=x;
+	length++;
+	return *this;
+}
